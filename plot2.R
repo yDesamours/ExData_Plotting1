@@ -1,0 +1,8 @@
+library(sqldf)
+download.file('https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip', 'data.zip')
+unzip('data.zip')
+gaptime=read.csv.sql('household_power_consumption.txt', sql="select Global_active_power, Date, Time from file where Date in ('1/2/2007', '2/2/2007')", sep = ';')
+png('plot2.png', width=480, height=480)
+time = strptime(paste(gaptime$Date, gaptime$Time), '%d/%m/%Y %H:%M:%S')
+plot(time, gap$Global_active_power, type = 'l', xlab = 'Global Active Power (kilowatts)', ylab = '')
+dev.off()

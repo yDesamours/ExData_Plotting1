@@ -1,0 +1,7 @@
+library(sqldf)
+download.file('https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip', 'data.zip')
+unzip('data.zip')
+gap=read.csv.sql('household_power_consumption.txt', sql="select Global_active_power from file where Date in ('1/2/2007', '2/2/2007')", sep = ';')
+png('plot1.png', width=480, height=480)
+hist(gap$Global_active_power, col='red', main = 'Global Active Power', xlab = 'Global Active Power (kilowatts)')
+dev.off()
